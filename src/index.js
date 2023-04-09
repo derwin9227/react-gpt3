@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, {useState, useEffect} from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+function Counter() {
+  const [mensaje, setMensaje] = useState('');
+
+  const [contador, setContador] = useState(0);
+
+  useEffect(() => {console.log("render")}, []);
+
+  return (
+    <div>
+      <input onChange={e => setMensaje(e.target.value)} />
+      <label>{mensaje}</label>
+      <button onClick={()=>{alert("El mensaje es: "+ mensaje)}}>Save</button>
+
+      <hr/>
+
+    <h2>contador: {contador}</h2>
+    <button onClick={()=>setContador(contador+1)}>Incrementar</button>
+    </div>
+      
+  );
+}
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <Counter />
+)
